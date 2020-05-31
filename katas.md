@@ -109,3 +109,37 @@ console.log(calculateString(";$%§fsdfsd235??df/sdfgf5gh.000kk0000"));
 // Input: "gdfgdf234dg54gf*23oP42"
 // Output: "54929268" (because 23454*2342=54929268)
 ```
+
+
+30th May 2020
+Pair of Gloves
+```js
+let myGloves = [
+  "Fuchsia",
+  "Maroon",
+  "Navy",
+  "Purple",
+  "Fuchsia",
+  "Gray",
+  "Teal",
+  "White",
+  "White",
+];
+function numberOfPairs(gloves) {
+  return (
+    Object.entries(
+      gloves.reduce((obj, glove) => {
+        if (glove in obj) obj[glove] = ++obj[glove];
+        else obj[glove] = 1;
+        return obj;
+      }, {})
+    ).reduce(
+      (total, [color, count]) =>
+        count % 2 === 0 ? total + count : total + count - 1,
+      0
+    ) / 2
+  );
+}
+
+console.log(numberOfPairs(myGloves));
+```
