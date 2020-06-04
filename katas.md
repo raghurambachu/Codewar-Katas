@@ -173,3 +173,33 @@ function change(string) {
 console.log(change("Abc e  $$  z!!a$%&RgTT"));
 
 ```
+
+4th June 2020
+Meeting
+```js
+// John has invited some friends. His list is:
+// Could you make a program that
+
+// makes this string uppercase
+// gives it sorted in alphabetical order by last name.
+// When the last names are the same, sort them by first name. Last name and first name of a guest come in the result between parentheses separated by a comma.
+// "(CORWILL, ALFRED)(CORWILL, FRED)(CORWILL, RAPHAEL)(CORWILL, WILFRED)(TORNBULL, BARNEY)(TORNBULL, BETTY)(TORNBULL, BJON)"
+
+function meeting(str) {
+  str = str
+    .split(";")
+    .map((name) => name.split(":"))
+    .map(([first, last]) =>
+      [last.toUpperCase(), first.toUpperCase()].join(", ")
+    )
+    .sort()
+    .map((name) => `(${name})`)
+    .join("");
+  return str;
+}
+
+str =
+  "Fred:Corwill;Wilfred:Corwill;Barney:Tornbull;Betty:Tornbull;Bjon:Tornbull;Raphael:Corwill;Alfred:Corwill";
+
+console.log(meeting(str));
+```
