@@ -203,3 +203,31 @@ str =
 
 console.log(meeting(str));
 ```
+
+5th June 2020
+Divisible Ints
+```js
+// You are given an integer N. Your job is to figure out how many substrings inside of N divide evenly with N.
+
+function getCount(n) {
+  strN = `${n}`;
+  let count = 0;
+  let possibleDivisors = [];
+  for (let i = 0; i < strN.length; i++) {
+    for (let j = 1; j <= strN.length; j++) {
+      possibleDivisors.push(strN.slice(i, j));
+    }
+  }
+  possibleDivisors = possibleDivisors
+    .filter((digits) => digits != "")
+    .map((digit) => +digit)
+    .sort((a, b) => a - b);
+  possibleDivisors = possibleDivisors.slice(0, possibleDivisors.length - 1);
+  for (let i = 0; i < possibleDivisors.length; i++) {
+    if (n % possibleDivisors[i] === 0) count++;
+  }
+  return count;
+}
+
+console.log(getCount(1230));
+```
