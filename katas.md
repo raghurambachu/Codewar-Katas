@@ -231,3 +231,48 @@ function getCount(n) {
 
 console.log(getCount(1230));
 ```
+
+
+6th June 2020
+Permute Palindrome
+```js
+// Write a function that will check whether the permutation of an input string is a palindrome. Bonus points for a solution that is efficient and/or that uses only built-in language functions. Deem yourself brilliant if you can come up with a version that does not use any function whatsoever.
+
+function permutePalindrome(str) {
+  const list = str
+    .split("")
+    .sort()
+    .reduce((list, char) => {
+      if (char in list) {
+        list[char] = ++list[char];
+      } else {
+        list[char] = 1;
+      }
+      return list;
+    }, {});
+  let counter = 0;
+  for (let [key, value] of Object.entries(list)) {
+    if (value % 2 === 0) delete list[key];
+    else {
+      counter++;
+      if (counter > 1) break;
+      delete list[key];
+    }
+  }
+  return Object.keys(list).length === 0 ? true : false;
+}
+
+
+console.log(permutePalindrome("racecar"));
+console.log(permutePalindrome("kayak"));
+console.log(permutePalindrome("something"));
+
+// Example
+// madam -> True
+// adamm -> True
+// junk -> False
+
+// Hint
+// The brute force approach would be to generate all the permutations of the string and check each one of them whether it is a palindrome. However, an optimized approach will not require this at all.
+
+```
